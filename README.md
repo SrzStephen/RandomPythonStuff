@@ -13,4 +13,4 @@ If you're using linux you'll need to add yourself to the dialout group to access
 
 ThesisStuff
 
-Initial versions of things for my thesis + final plots used in my end of year presentation.
+Initial versions of logging code for my thesis + final plots used in my end of year presentation.
