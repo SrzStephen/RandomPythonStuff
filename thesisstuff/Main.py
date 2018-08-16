@@ -29,6 +29,10 @@ rownum = 2
 with open(location + file, "a+") as writefile:
     configFile = csv.writer(writefile, delimiter=",")
     ConfigMaker = Configs.RandomConfig(offlineOnly=False)
+    # Note: all thoughout this file I didn't use f formatting/any normal string formatting
+    # There was a reason that I did this, but I can't remember why on reflection
+    # I'm pretty sure it was because what I was doing kept changing, and I never went back to pretty it up.
+ 
     completeheaders = str(
         "Row") + "," + ConfigMaker.returnHeaders() + ",owntemp,ownhumidity"+\
                       ",rainfall,cloud,humidity,restarttype,current,timetaken,datetime"
@@ -71,6 +75,9 @@ with open(location + file, "a+") as writefile:
             gps.sendConfigs(ConfigMaker.disableExtraMessage(), report=False)
             gps.sendConfigs(ConfigMaker.listdisableCoreMessages())
             gps.AckNackConfigured = False  ##aks get reset by reset
+            # I could have made a class containing all of these
+            # But at this point in time I was running into issues with the message being rejected
+            # So it was more convenient to put them here.
             gps.sendConfigs(["06 01 08 00 05 01 00 01 00 00 00 00 16 D7"],report=False) # ACK
             gps.sendConfigs(["06 01 08 00 05 00 00 01 00 00 00 00 15 D0"],report=False)  # NAK
             gps.sendConfigs(["06 01 08 00 13 60 00 01 00 00 00 00 83 E0"],report=False)  # MGA ACK
